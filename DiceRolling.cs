@@ -41,7 +41,7 @@ namespace Mission2Dice {
         public void printDiceRolls(bool indiv) { // Method to output dice rolls
             // Initialize outputString with starter text
             string outputString = "DICE ROLLING SIMULATION RESULTS\n";
-            if (indiv) { outputString += "Each \"*\" represents 1 roll."; } // If set to indiv, output this
+            if (indiv) { outputString += "Each \"*\" represents 1 roll.\n"; } // If set to indiv, output this
             else { outputString += "Each \"*\" represents 1 % of the total number of rolls.\n"; } // Otherwise, percent
             outputString += "Total number of rolls = " + numRolls + "\n";
 
@@ -69,7 +69,7 @@ namespace Mission2Dice {
             outputString += "Thank you for using the dice throwing simulator. Goodbye!";
             if (!indiv) { // If it was done as a percentage we'll add this note
                 outputString += "\nNOTE: Due to rounding issues and the fact that you cannot print a partial " +
-                    "asterisk, your total number of asterisks printed may not be exactly 100."; 
+                    "asterisk, your \ntotal number of asterisks printed may not be exactly 100."; 
             }
 
             System.Console.WriteLine(outputString);
