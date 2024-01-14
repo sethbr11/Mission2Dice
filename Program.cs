@@ -60,17 +60,22 @@ internal class DiceRoll
             catch (System.FormatException) { diceRolls = 10; } // If the exception is thrown, assign diceRools to 10
         }
         // If a number of dice rolls was given initially upon program execution, just use that
-        else { 
-            diceRolls = int.Parse(args[0]); 
+        else {
+            try { diceRolls = int.Parse(args[0]); } // Dice rolls from initial program execution
+            catch (System.FormatException) { diceRolls = 10; }
+
             try { indivOrPcnt = bool.Parse(args[1]); } // Second argument entered at initialization toggles indivOrPcnt
-            catch (System.IndexOutOfRangeException) { indivOrPcnt = false; } // If it fails keep at false by default
+            catch (System.IndexOutOfRangeException) { indivOrPcnt = false; } // If it no entry keep at false by default
+            catch (System.FormatException) { indivOrPcnt = false; } // If wrong input same thing
         }
 
         /***********************ROLL DICE***********************/
         DiceRolling dr = new DiceRolling(diceRolls); // Initialize
-        dr.rollDice(); // Roll the dice
+        int[] arrayOfDiceRolls = dr.rollDice(); // Roll the dice, get the array (because the rubric says so)
 
         /*****************OUTPUT WITH ASTRISKS******************/
-        dr.printDiceRolls(indivOrPcnt); // Call method to print the dice. Setting to false will do percentages
+        // Call method to print the dice. Setting to false will do percentages
+        // Because of the rubric I will pass the array as well, though it is simpler to give the class an attribute
+        dr.printDiceRolls(indivOrPcnt, arrayOfDiceRolls);
     }
 }

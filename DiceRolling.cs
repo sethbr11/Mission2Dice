@@ -26,19 +26,21 @@ namespace Mission2Dice {
             numberRolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
         public DiceRolling(int numberOfRolls) {
-            this.numRolls = numberOfRolls; // Assign our class numRolls to the passed number of rolls
+            numRolls = numberOfRolls; // Assign our class numRolls to the passed number of rolls
             numberRolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
 
         /************************METHODS************************/
-        public void rollDice() { // Method to roll all of the dice
+        public int[] rollDice() { // Method to roll all of the dice
             for (int i = 0; i < numRolls; i++) {
                 int diceRollNumber = rollOneDice(); // Generate a random number from the helper function
                 numberRolls[diceRollNumber - 2]++; // Increment the corresponding array index
             }
+
+            return numberRolls; // Return it because the rubric says to
         }
 
-        public void printDiceRolls(bool indiv) { // Method to output dice rolls
+        public void printDiceRolls(bool indiv, int[] rollArray) { // Method to output dice rolls
             // Initialize outputString with starter text
             string outputString = "DICE ROLLING SIMULATION RESULTS\n";
             if (indiv) { outputString += "Each \"*\" represents 1 roll.\n"; } // If set to indiv, output this
@@ -46,16 +48,16 @@ namespace Mission2Dice {
             outputString += "Total number of rolls = " + numRolls + "\n\n";
 
             // For loop to output each dice roll possibility and the relating asterisks
-            for (int diceNum = 0; diceNum < numberRolls.Length; diceNum++) {
+            for (int diceNum = 0; diceNum < rollArray.Length; diceNum++) {
                 int numAsterisk = 0;
                 outputString += (diceNum + 2) + ": "; // Start the line with the dice roll number
 
                 // If it was checked for individual rolls, set numAsterisk equal to the number of each roll
-                if (indiv) { numAsterisk = numberRolls[diceNum]; }
+                if (indiv) { numAsterisk = rollArray[diceNum]; }
                 // If marked to percent, calculate the percentage of rolls and set numAsterisk accordingly
                 else {
-                    // Calculate the percent, convert numberRolls[diceNum] to a float just in the line to do calculation
-                    float asAPercent = ((float)numberRolls[diceNum] / numRolls) * 100;
+                    // Calculate the percent, convert rollArray[diceNum] to a float just in the line to do calculation
+                    float asAPercent = ((float)rollArray[diceNum] / numRolls) * 100;
                     numAsterisk = (int)System.Math.Round(asAPercent); // Now round the percentage to the nearest int
                 }
 
