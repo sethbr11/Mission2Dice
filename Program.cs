@@ -63,7 +63,7 @@ internal class DiceRoll
         else { 
             diceRolls = int.Parse(args[0]); 
             try { indivOrPcnt = bool.Parse(args[1]); } // Second argument entered at initialization toggles indivOrPcnt
-            catch (System.FormatException) { indivOrPcnt = false; } // If it fails keep at false by default
+            catch (System.IndexOutOfRangeException) { indivOrPcnt = false; } // If it fails keep at false by default
         }
 
         /***********************ROLL DICE***********************/
