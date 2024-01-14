@@ -1,4 +1,11 @@
-﻿/* PROJECT DESCRIPTION:
+﻿/* AUTHOR: Seth Brock
+ * SECTION: 001
+ * IS 413 - Hilton
+ * Assignment Name: Mission #2
+ * Short Description: a console-based mini-game to roll two dice a certain number of times based on user input
+ *                    and keep track of the combinations rolled
+ */
+/* PROJECT DESCRIPTION:
     Write a .NET console application using C# that simulates the rolling of two 6-sided dice. Use an
     Array to keep track of the number of times that each combination is thrown. In other words,
     keep track of how many times the combination of the two simulated dice is 2, how many times
@@ -32,14 +39,14 @@
     Submit a link to your GitHub repository containing your project via Learning Suite.
  */
 
+using Mission2Dice;
+
 internal class DiceRoll
 {
     // Main function to run program
     private static void Main(string[] args) {
         /****************VARIABLE INITIALIZATION****************/
         int diceRolls; // User-inputted integer for how many times to roll dice
-        // Dice nums rolled: 2  3  4  5  6  7  8  9 10 11 12
-        int[] numberRolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         /*********************GETTING INPUTS********************/
         System.Console.WriteLine("Welcome to the dice throwing simulator!");
@@ -53,7 +60,12 @@ internal class DiceRoll
         }
         // If a number of dice rolls was given initially upon program execution, just use that
         else { diceRolls = int.Parse(args[0]); }
-        
-        System.Console.WriteLine("You rolled the dice " +  diceRolls + " time(s)!");
+
+        /***********************ROLL DICE***********************/
+        DiceRolling dr = new DiceRolling(diceRolls); // Initialize
+        dr.rollDice(); // Roll the dice
+
+        /*****************OUTPUT WITH ASTRISKS******************/
+        dr.printDiceRolls(); // Call method to print the dice
     }
 }
