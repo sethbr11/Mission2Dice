@@ -47,6 +47,7 @@ internal class DiceRoll
     private static void Main(string[] args) {
         /****************VARIABLE INITIALIZATION****************/
         int diceRolls; // User-inputted integer for how many times to roll dice
+        bool indivOrPcnt = false; // False makes it so we output astrisks according to percent
 
         /*********************GETTING INPUTS********************/
         System.Console.WriteLine("Welcome to the dice throwing simulator!");
@@ -59,13 +60,17 @@ internal class DiceRoll
             catch (System.FormatException) { diceRolls = 10; } // If the exception is thrown, assign diceRools to 10
         }
         // If a number of dice rolls was given initially upon program execution, just use that
-        else { diceRolls = int.Parse(args[0]); }
+        else { 
+            diceRolls = int.Parse(args[0]); 
+            try { indivOrPcnt = bool.Parse(args[1]); } // Second argument entered at initialization toggles indivOrPcnt
+            catch (System.FormatException) { indivOrPcnt = false; } // If it fails keep at false by default
+        }
 
         /***********************ROLL DICE***********************/
         DiceRolling dr = new DiceRolling(diceRolls); // Initialize
         dr.rollDice(); // Roll the dice
 
         /*****************OUTPUT WITH ASTRISKS******************/
-        dr.printDiceRolls(false); // Call method to print the dice. Setting to false will do percentages
+        dr.printDiceRolls(indivOrPcnt); // Call method to print the dice. Setting to false will do percentages
     }
 }

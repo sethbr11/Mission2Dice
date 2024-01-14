@@ -43,7 +43,7 @@ namespace Mission2Dice {
             string outputString = "DICE ROLLING SIMULATION RESULTS\n";
             if (indiv) { outputString += "Each \"*\" represents 1 roll.\n"; } // If set to indiv, output this
             else { outputString += "Each \"*\" represents 1 % of the total number of rolls.\n"; } // Otherwise, percent
-            outputString += "Total number of rolls = " + numRolls + "\n";
+            outputString += "Total number of rolls = " + numRolls + "\n\n";
 
             // For loop to output each dice roll possibility and the relating asterisks
             for (int diceNum = 0; diceNum < numberRolls.Length; diceNum++) {
@@ -66,9 +66,9 @@ namespace Mission2Dice {
             }
 
             // Output end text
-            outputString += "Thank you for using the dice throwing simulator. Goodbye!";
+            outputString += "\nThank you for using the dice throwing simulator. Goodbye!";
             if (!indiv) { // If it was done as a percentage we'll add this note
-                outputString += "\nNOTE: Due to rounding issues and the fact that you cannot print a partial " +
+                outputString += "\n\nNOTE: Due to rounding issues and the fact that you cannot print a partial " +
                     "asterisk, your total\nnumber of asterisks printed may not be exactly 100."; 
             }
 
