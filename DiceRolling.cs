@@ -69,7 +69,7 @@ namespace Mission2Dice {
             outputString += "Thank you for using the dice throwing simulator. Goodbye!";
             if (!indiv) { // If it was done as a percentage we'll add this note
                 outputString += "\nNOTE: Due to rounding issues and the fact that you cannot print a partial " +
-                    "asterisk, your total\n number of asterisks printed may not be exactly 100."; 
+                    "asterisk, your total\nnumber of asterisks printed may not be exactly 100."; 
             }
 
             System.Console.WriteLine(outputString);
