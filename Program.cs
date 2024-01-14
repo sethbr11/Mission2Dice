@@ -66,6 +66,6 @@ internal class DiceRoll
         dr.rollDice(); // Roll the dice
 
         /*****************OUTPUT WITH ASTRISKS******************/
-        dr.printDiceRolls(); // Call method to print the dice
+        dr.printDiceRolls(false); // Call method to print the dice. Setting to false will do percentages
     }
 }

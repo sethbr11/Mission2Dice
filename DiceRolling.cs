@@ -14,8 +14,10 @@ using System.Threading.Tasks;
 
 namespace Mission2Dice {
     internal class DiceRolling {
+        /**********************ATTRIBUTES***********************/
         int numRolls; // How many times we are rolling the dice
         int[] numberRolls = new int[11]; // How many times each number combo was rolled, set to 11 for two dice
+        private Random rndm = new System.Random(); // Random number class built in to C#
 
         /*********************CONSTRUCTORS**********************/
         public DiceRolling() {
@@ -36,25 +38,37 @@ namespace Mission2Dice {
             }
         }
 
-        public void printDiceRolls() { // Method to output the results of our dice rolls
+        public void printDiceRolls(bool indiv) { // Method to output dice rolls
             // Initialize outputString with starter text
             string outputString = "DICE ROLLING SIMULATION RESULTS\nEach \"*\" represents 1 % of the total " +
                 "number of rolls.\nTotal number of rolls = " + numRolls + "\n";
 
-            // Iterate through the array to output the number of times each dice was rolled
+            // For loop to output each dice roll possibility and the relating asterisks
             for (int diceNum = 0; diceNum < numberRolls.Length; diceNum++) {
+                int numAsterisk = 0;
                 outputString += (diceNum + 2) + ": "; // Start the line with the dice roll number
 
+                // If it was checked for individual rolls, set numAsterisk equal to the number of each roll
+                if (indiv) { numAsterisk = numberRolls[diceNum]; }
+                // If marked to percent, calculate the percentage of rolls and set numAsterisk accordingly
+                else {
+                    // Calculate the percent, convert numberRolls[diceNum] to a float just in the line to do calculation
+                    float asAPercent = ((float)numberRolls[diceNum] / numRolls) * 100;
+                    numAsterisk = (int)System.Math.Round(asAPercent); // Now round the percentage to the nearest int
+                }
+
                 // Output the asterisks
-                for (int numAsterisk = 0; numAsterisk < numberRolls[diceNum]; numAsterisk++) { outputString += "*"; }
+                for (int i = 0; i < numAsterisk; i++) { outputString += "*"; }
 
                 outputString += "\n"; // New line
             }
 
             // Output end text
-            outputString += "Thank you for using the dice throwing simulator. Goodbye!\nNOTE: Due to rounding issues " +
-                "and the fact that you cannot print a partial asterisk, your total\nnumber of asterisks printed may " +
-                "not be exactly " + numRolls + ".";
+            outputString += "Thank you for using the dice throwing simulator. Goodbye!";
+            if (!indiv) { // If it was done as a percentage we'll add this note
+                outputString += "\nNOTE: Due to rounding issues and the fact that you cannot print a partial " +
+                    "asterisk, your total number of asterisks printed may not be exactly 100."; 
+            }
 
             System.Console.WriteLine(outputString);
         }
@@ -62,7 +76,6 @@ namespace Mission2Dice {
         /********************HELPER METHODS*********************/
         private int rollOneDice() {
             // Generate the random numbers
-            Random rndm = new System.Random(); // Random number class built in to C#
             int dice1Num = rndm.Next(1, 7); // Generate the first random number (includes 1, excludes 7)
             int dice2Num = rndm.Next(1, 7); // Generate the second random number the same way
 
