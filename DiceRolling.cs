@@ -40,8 +40,10 @@ namespace Mission2Dice {
 
         public void printDiceRolls(bool indiv) { // Method to output dice rolls
             // Initialize outputString with starter text
-            string outputString = "DICE ROLLING SIMULATION RESULTS\nEach \"*\" represents 1 % of the total " +
-                "number of rolls.\nTotal number of rolls = " + numRolls + "\n";
+            string outputString = "DICE ROLLING SIMULATION RESULTS\n";
+            if (indiv) { outputString += "Each \"*\" represents 1 roll."; } // If set to indiv, output this
+            else { outputString += "Each \"*\" represents 1 % of the total number of rolls.\n"; } // Otherwise, percent
+            outputString += "Total number of rolls = " + numRolls + "\n";
 
             // For loop to output each dice roll possibility and the relating asterisks
             for (int diceNum = 0; diceNum < numberRolls.Length; diceNum++) {
