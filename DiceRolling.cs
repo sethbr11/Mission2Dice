@@ -14,10 +14,13 @@ using System.Threading.Tasks;
 
 namespace Mission2Dice {
     internal class DiceRolling {
+
         /**********************ATTRIBUTES***********************/
         int numRolls; // How many times we are rolling the dice
         int[] numberRolls = new int[11]; // How many times each number combo was rolled, set to 11 for two dice
         private Random rndm = new System.Random(); // Random number class built in to C#
+
+
 
         /*********************CONSTRUCTORS**********************/
         public DiceRolling() {
@@ -29,6 +32,8 @@ namespace Mission2Dice {
             numRolls = numberOfRolls; // Assign our class numRolls to the passed number of rolls
             numberRolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
+
+
 
         /************************METHODS************************/
         public int[] rollDice() { // Method to roll all of the dice
@@ -81,6 +86,8 @@ namespace Mission2Dice {
 
             System.Console.WriteLine(outputString);
         }
+
+
 
         /********************HELPER METHODS*********************/
         private int rollOneDice() {

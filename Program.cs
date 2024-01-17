@@ -45,12 +45,16 @@ internal class DiceRoll
 {
     // Main function to run program
     private static void Main(string[] args) {
+
         /****************VARIABLE INITIALIZATION****************/
         int diceRolls; // User-inputted integer for how many times to roll dice
         bool indivOrPcnt = false; // False makes it so we output astrisks according to percent
 
+
+
         /*********************GETTING INPUTS********************/
         System.Console.WriteLine("Welcome to the dice throwing simulator!");
+
         // If a number of dice rolls was not given initially upon program execution, have the user enter a number
         if (args.Length == 0) {
             System.Console.WriteLine("How many dice rolls would you like to simulate?"); // Ask the user
@@ -59,6 +63,7 @@ internal class DiceRoll
             try { diceRolls = int.Parse(System.Console.ReadLine()); } // Read the user input
             catch (System.FormatException) { diceRolls = 10; } // If the exception is thrown, assign diceRools to 10
         }
+
         // If a number of dice rolls was given initially upon program execution, just use that
         else {
             try { diceRolls = int.Parse(args[0]); } // Dice rolls from initial program execution
@@ -69,9 +74,13 @@ internal class DiceRoll
             catch (System.FormatException) { indivOrPcnt = false; } // If wrong input same thing
         }
 
+
+
         /***********************ROLL DICE***********************/
         DiceRolling dr = new DiceRolling(diceRolls); // Initialize
         int[] arrayOfDiceRolls = dr.rollDice(); // Roll the dice, get the array (because the rubric says so)
+
+
 
         /*****************OUTPUT WITH ASTRISKS******************/
         // Call method to print the dice. Setting to false will do percentages
