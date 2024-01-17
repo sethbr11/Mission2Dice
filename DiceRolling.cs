@@ -40,7 +40,12 @@ namespace Mission2Dice {
             return numberRolls; // Return it because the rubric says to
         }
 
-        public void printDiceRolls(bool indiv, int[] rollArray) { // Method to output dice rolls
+        // Methods to output dice rolls
+        public void printDiceRolls() { printDiceRolls(false, numberRolls); }                // No parameters passed
+        public void printDiceRolls(bool indiv) { printDiceRolls(indiv, numberRolls); }      // Just boolean passed
+        public void printDiceRolls(int[] rollArray) { printDiceRolls(false, rollArray); }   // Just array passed
+
+        public void printDiceRolls(bool indiv, int[] rollArray) {                           // Boolean and array passed
             // Initialize outputString with starter text
             string outputString = "DICE ROLLING SIMULATION RESULTS\n";
             if (indiv) { outputString += "Each \"*\" represents 1 roll.\n"; } // If set to indiv, output this
